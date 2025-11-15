@@ -83,12 +83,11 @@ def exploit():
     
     p.close()
     
-    # Step 2: Find target function using objdump or gdb
     
-    # Step 3: Try common target addresses
+    # Step 2: Try common target addresses
     possible_targets = find_target_function()
     
-    log.info("\nStep 3: Trying possible target addresses...")
+    log.info("\nStep 2: Trying possible target addresses...")
     
     for target in possible_targets:
         log.info(f"\nTrying target address: {hex(target)}")
