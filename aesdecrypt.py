@@ -4,10 +4,8 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.backends import default_backend
 import os
 import base64
-from itertools import product
 
 encrypted_flag = "Cm7ukyVEUFlJtaEZuK760Lb5dLlWCWCmaXZzhJ5KTB4mtQNWxgq5kbR6JtL886ZG"
-key = "IIK3100IIK310"
 
 class AESCipher:
     def __init__(self, key: str):
@@ -81,7 +79,7 @@ def try_all_keys(ciphertext):
             except Exception:
                 pass
 
-        print("[-] No valid key found.")
+        print("No valid key found.")
 
 ciphertext = encrypted_flag
 try_all_keys(ciphertext)

