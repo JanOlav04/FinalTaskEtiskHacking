@@ -34,7 +34,7 @@ func main() {
 
 	// Change this number to decode more or fewer times
 	const decodeTimes = 100
-
+	// Stops when a error occurs (likely due to flag not being valid base64)
 	err = decodeBase64NTimes(input, decodeTimes)
 	if err != nil {
 		fmt.Println("Error:", err)

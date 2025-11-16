@@ -1,3 +1,4 @@
+# Made this it own file to make it easier to navigate.
 # Retry decryption attempts with corrected key derivation implementations.
 from Crypto.Cipher import DES
 from Crypto.Util.Padding import unpad

@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-"""
-Hiker2 Heap Exploitation
-The binary allocates heap memory and shows addresses of 'data' and 'fp' (function pointer)
-We need to overflow 'data' to overwrite 'fp' and redirect execution
-"""
+
+# Hiker2 Heap Exploitation
+# The binary allocates heap memory and shows addresses of 'data' and 'fp' (function pointer)
+# We need to overflow 'data' to overwrite 'fp' and redirect execution
+
 from pwn import *
 
 context.binary = elf = ELF('./hiker2')
 context.log_level = 'info'
 
 def find_target_function():
-    """
-    Disassemble the binary to find the hidden function that prints the flag
-    """
+    
+    # Disassemble the binary to find the hidden function that prints the flag
+    
     log.info("Searching for target function...")
     
     # Let's try to find it by looking at the binary
